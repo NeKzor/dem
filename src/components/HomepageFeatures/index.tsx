@@ -12,7 +12,7 @@ const FeatureList: FeatureItem[] = [
     title: "In-depth",
     description: (
       <>
-        In-depth documentation of each embedded type.
+        In-depth documentation for all embedded types.
       </>
     ),
   },
@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
     title: "Type Definitions",
     description: (
       <>
-        Type layout definitions for C, C++, C#, JS, TS, Go, Rust and Zig.
+        Type definitions for C, C++, C#, JS, TS, Go, Rust and Zig.
       </>
     ),
   },
@@ -28,7 +28,7 @@ const FeatureList: FeatureItem[] = [
     title: "Examples",
     description: (
       <>
-        Pseudocode examples when parsing complex data.
+        Pseudocode examples when parsing advanced data.
       </>
     ),
   },
