@@ -7,7 +7,7 @@
     },
     {
       "name": "Message",
-      "path": "docs/messages.mdx",
+      "path": "docs/messages/messages.mdx",
       "generate": true
     },
     {

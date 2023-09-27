@@ -12,28 +12,28 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="lang">
-  <TabItem value="overview" label="Overview">
+<TabItem value="overview" label="Overview">
 
-  | Name | Type | Size in bytes | Size in bits | Value |
-  | --- | --- | --- | --- | --- |
-  | DemoFileStamp | string | 8 | 64 | HL2DEMO\0 |
-  | DemoProtocol | int | 4 | 32 | - |
-  | NetworkProtocol | int | 4 | 32 | - |
-  | ServerName | string | 260 | 2080 | - |
-  | ClientName | string | 260 | 2080 | - |
-  | MapName | string | 260 | 2080 | - |
-  | GameDirectory | string | 260 | 2080 | - |
-  | PlaybackTime | float | 4 | 32 | - |
-  | PlaybackTicks | int | 4 | 32 | - |
-  | PlaybackFrames | int | 4 | 32 | - |
-  | SignOnLength | int | 4 | 32 | - |
-  | DemoMessages | [Message[]](./messages) | - | - | - |
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| DemoFileStamp | string | 8 | 64 | HL2DEMO\0 |
+| DemoProtocol | int | 4 | 32 | - |
+| NetworkProtocol | int | 4 | 32 | - |
+| ServerName | string | 260 | 2080 | - |
+| ClientName | string | 260 | 2080 | - |
+| MapName | string | 260 | 2080 | - |
+| GameDirectory | string | 260 | 2080 | - |
+| PlaybackTime | float | 4 | 32 | - |
+| PlaybackTicks | int | 4 | 32 | - |
+| PlaybackFrames | int | 4 | 32 | - |
+| SignOnLength | int | 4 | 32 | - |
+| DemoMessages | Message[] | - | - | - |
 
-  </TabItem>
-  <TabItem value="c" label="C">
+</TabItem>
+<TabItem value="c" label="C">
 
-  ```c
-  struct demo_t {
+```c
+struct demo_t {
     char demo_file_stamp[8];
     int demo_protocol;
     int network_protocol;
@@ -45,16 +45,16 @@ import TabItem from '@theme/TabItem';
     int playback_ticks;
     int playback_frames;
     int sign_on_length;
-    demo_message_t** demo_messages;
-  };
-  ```
+    message_t** demo_messages;
+};
+```
 
-  </TabItem>
-  <TabItem value="cpp" label="C++">
+</TabItem>
+<TabItem value="cpp" label="C++">
 
-  ```cpp
-  struct demo_t {
-    uint8_t demo_file_stamp[8];
+```cpp
+struct demo_t {
+    std::string demo_file_stamp;
     int32_t demo_protocol;
     int32_t network_protocol;
     std::string server_name;
@@ -65,15 +65,15 @@ import TabItem from '@theme/TabItem';
     int32_t playback_ticks;
     int32_t playback_frames;
     int32_t sign_on_length;
-    std::vector<demo_message_t> demo_messages;
-  };
-  ```
+    std::vector<message_t> demo_messages;
+};
+```
 
-  </TabItem>
-  <TabItem value="csharp" label="C#">
+</TabItem>
+<TabItem value="csharp" label="C#">
 
-  ```csharp
-  class Demo {
+```csharp
+class Demo {
     public string DemoFileStamp { get; set; }
     public int DemoProtocol { get; set; }
     public int NetworkProtocol { get; set; }
@@ -85,75 +85,75 @@ import TabItem from '@theme/TabItem';
     public int PlaybackTicks { get; set; }
     public int PlaybackFrames { get; set; }
     public int SignOnLength { get; set; }
-    public List<DemoMessage> DemoMessages { get; set; }
-  }
-  ```
+    public List<Message> DemoMessages { get; set; }
+}
+```
 
-  </TabItem>
-  <TabItem value="js" label="JS">
+</TabItem>
+<TabItem value="js" label="JS">
 
-  ```js
-  class Demo {
-    demoFileStamp;
-    demoProtocol;
-    networkProtocol;
-    serverName;
-    clientName;
-    mapName;
-    gameDirectory;
-    playbackTime;
-    playbackTicks;
-    playbackFrames;
-    signOnLength;
-    demoMessages;
-  }
-  ```
+```js
+class Demo {
+  /** @type {string} */ demoFileStamp;
+  /** @type {number} */ demoProtocol;
+  /** @type {number} */ networkProtocol;
+  /** @type {string} */ serverName;
+  /** @type {string} */ clientName;
+  /** @type {string} */ mapName;
+  /** @type {string} */ gameDirectory;
+  /** @type {number} */ playbackTime;
+  /** @type {number} */ playbackTicks;
+  /** @type {number} */ playbackFrames;
+  /** @type {number} */ signOnLength;
+  /** @type {Message[]} */ demoMessages;
+}
+```
 
-  </TabItem>
-  <TabItem value="ts" label="TS">
+</TabItem>
+<TabItem value="ts" label="TS">
 
-  ```ts
-  class Demo {
-    public demoFileStamp?: string;
-    public demoProtocol?: number;
-    public networkProtocol?: number;
-    public serverName?: string;
-    public clientName?: string;
-    public mapName?: string;
-    public gameDirectory?: string;
-    public playbackTime?: number;
-    public playbackTicks?: number;
-    public playbackFrames?: number;
-    public signOnLength?: number;
-    public demoMessages?: DemoMessage[];
-  }
-  ```
+```ts
+class Demo {
+  public demoFileStamp?: string;
+  public demoProtocol?: number;
+  public networkProtocol?: number;
+  public serverName?: string;
+  public clientName?: string;
+  public mapName?: string;
+  public gameDirectory?: string;
+  public playbackTime?: number;
+  public playbackTicks?: number;
+  public playbackFrames?: number;
+  public signOnLength?: number;
+  public demoMessages?: Message[];
+}
+```
 
-  </TabItem>
-  <TabItem value="go" label="Go">
+</TabItem>
+<TabItem value="go" label="Go">
 
-  ```go
-  type Demo struct {
-    DemoFileStamp string
-    DemoProtocol int32
-    NetworkProtocol int32
-    ServerName string
-    ClientName string
-    MapName string
-    GameDirectory string
-    PlaybackTime float32
-    PlaybackTicks int32
-    PlaybackFrames int32
-    SignOnLength int32
-    DemoMessages []DemoMessage
-  }
-  ```
+```go
+type Demo struct {
+	DemoFileStamp   string
+	DemoProtocol    int32
+	NetworkProtocol int32
+	ServerName      string
+	ClientName      string
+	MapName         string
+	GameDirectory   string
+	PlaybackTime    float32
+	PlaybackTicks   int32
+	PlaybackFrames  int32
+	SignOnLength    int32
+	DemoMessages    []Message
+};
+```
 
-  </TabItem>
-  <TabItem value="rust" label="Rust">
+</TabItem>
+<TabItem value="rust" label="Rust">
 
-  ```rust
-  pub struct Demo {
+```rust
+pub struct Demo {
     pub demo_file_stamp: String,
     pub demo_protocol: i32,
     pub network_protocol: i32,
@@ -165,15 +165,15 @@ import TabItem from '@theme/TabItem';
     pub playback_ticks: i32,
     pub playback_frames: i32,
     pub sign_on_length: i32,
-    pub demo_messages: Vec<DemoMessage>,
-  }
-  ```
+    pub demo_messages: Vec<Message>,
+}
+```
 
-  </TabItem>
-  <TabItem value="zig" label="Zig">
+</TabItem>
+<TabItem value="zig" label="Zig">
 
-  ```zig
-  const Demo = struct {
+```zig
+const Demo = struct {
     demo_file_stamp: []const u8,
     demo_protocol: i32,
     network_protocol: i32,
@@ -185,13 +185,12 @@ import TabItem from '@theme/TabItem';
     playback_ticks: i32,
     playback_frames: i32,
     sign_on_length: i32,
-    demo_messages: []DemoMessage,
-  };
-  ```
+    demo_messages: []Message,
+};
+```
 
-  </TabItem>
+</TabItem>
 </Tabs>
-
 
 <!-- @dem-gen-end:Demo -->
 
