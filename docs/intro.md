@@ -20,12 +20,18 @@ Documentation of the reverse-engineered `.dem` file format used in SourceEngine 
 
 ### 2023-09-27
 
-- Migrated docs to [Docusaurus](https://docusaurus.io)
+- Migrated docs to [Docusaurus]
 - Switched to new domain
+- Updated examples ([766132d])
+- Fixed typos and small issues ([c57f037])
+
+[Docusaurus]: https://docusaurus.io
+[766132d]: https://github.com/NeKzor/nekzor.github.io/commit/766132d43ef86b3822096e21104090e718581015
+[c57f037]: https://github.com/NeKzor/nekzor.github.io/commit/c57f037949afe993b97332477b5a562b93f29c81
 
 ### 2021-03-14
 
-- Migrated docs to [mdbook](https://github.com/rust-lang/mdBook)
+- Migrated docs to [mdbook]
 - Fixed order of `ForwardMove` and `SideMove` in [UserCmdInfo](./classes/usercmdinfo)
 - Added some additional caveats
 - Added short descriptions
@@ -33,3 +39,5 @@ Documentation of the reverse-engineered `.dem` file format used in SourceEngine 
 - Added license, dependencies, features and applications to [examples](./examples)
 - Added changelog
 - Added docs for [Net/Svc messages](./classes/netsvc)
+
+[mdbook]: https://github.com/rust-lang/mdBook
