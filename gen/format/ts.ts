@@ -1,34 +1,38 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { DemEnum, DemField, DemType } from "../dem.ts";
+import {
+  FormatContext,
+  FormatEnumContext,
+  FormatFieldContext,
+} from "./formatter.ts";
 import { toCamelCase } from "../utils.ts";
 import { Formatter } from "./formatter.ts";
 
 export class Ts implements Formatter {
-  genStruct(type: DemType, out: string[]): void {
-    out.push(`class ${type.name} {`);
-    type.fields.forEach((field) => {
-      out.push(`  public ${this.genField(field)};`);
+  genStruct(ctx: FormatContext, out: string[]): void {
+    out.push(`class ${ctx.type.name} {`);
+    ctx.type.fields.forEach((field) => {
+      out.push(`  public ${this.genField({ ...ctx, field })};`);
     });
     out.push(`}`);
   }
-  genField(field: DemField): string {
-    switch (field.type) {
+  genField(ctx: FormatFieldContext): string {
+    switch (ctx.field.type) {
       case "bool":
-        return `${toCamelCase(field.name)}?: boolean`;
+        return `${toCamelCase(ctx.field.name)}?: boolean`;
+      case "byte":
       case "int":
-        return `${toCamelCase(field.name)}?: number`;
       case "float":
-        return `${toCamelCase(field.name)}?: number`;
+        return `${toCamelCase(ctx.field.name)}?: number`;
       case "string":
-        return `${toCamelCase(field.name)}?: string`;
+        return `${toCamelCase(ctx.field.name)}?: string`;
       default: {
-        return `${toCamelCase(field.name)}?: ${field.type}`;
+        return `${toCamelCase(ctx.field.name)}?: ${ctx.field.type}`;
       }
     }
   }
-  genEnum(type: DemEnum, out: string[]): void {
+  genEnum(ctx: FormatEnumContext, out: string[]): void {
     throw new Error("Method not implemented.");
   }
 }

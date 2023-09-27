@@ -1,37 +1,43 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { DemEnum, DemField, DemType } from "../dem.ts";
+import {
+  FormatContext,
+  FormatEnumContext,
+  FormatFieldContext,
+} from "./formatter.ts";
 import { Formatter } from "./formatter.ts";
 
 export class Csharp implements Formatter {
-  genStruct(type: DemType, out: string[]): void {
-    out.push(`class ${type.name} {`);
-    type.fields.forEach((field) => {
-      out.push(`    public ${this.genField(field)} { get; set; }`);
+  genStruct(ctx: FormatContext, out: string[]): void {
+    out.push(`class ${ctx.type.name} {`);
+    ctx.type.fields.forEach((field) => {
+      out.push(`    public ${this.genField({ ...ctx, field })} { get; set; }`);
     });
     out.push(`}`);
   }
-  genField(field: DemField): string {
-    switch (field.type) {
+  genField(ctx: FormatFieldContext): string {
+    switch (ctx.field.type) {
       case "bool":
-        return `bool ${field.name}`;
+        return `bool ${ctx.field.name}`;
+      case "byte":
+        return `byte ${ctx.field.name}`;
       case "int":
-        return `int ${field.name}`;
+        return `int ${ctx.field.name}`;
       case "float":
-        return `float ${field.name}`;
+        return `float ${ctx.field.name}`;
       case "string":
-        return `string ${field.name}`;
+        return `string ${ctx.field.name}`;
       default: {
-        if (field.type.endsWith("[]")) {
-          return `List<${field.type.slice(0, -2)}> ${field.name}`;
+        if (ctx.field.type.endsWith("[]")) {
+          return `List<${ctx.field.type.slice(0, -2)}> ${ctx.field.name}`;
         } else {
-          return `${field.type} ${field.name}`;
+          return `${ctx.field.type} ${ctx.field.name}`;
         }
       }
     }
   }
-  genEnum(type: DemEnum, out: string[]): void {
+  genEnum(ctx: FormatEnumContext, out: string[]): void {
     throw new Error("Method not implemented.");
   }
 }

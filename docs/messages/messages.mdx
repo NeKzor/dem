@@ -9,25 +9,124 @@ message always starts with a tagged type followed by the current session tick¹,
 a slot² index and the type-specific message data.
 
 <!-- @dem-gen-begin:Message -->
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<Tabs>
-  <TabItem value="overview" label="Overview">
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
 
-  | Name | Type | Size in bytes | Size in bits | Value |
-  | --- | --- | --- | --- | --- |
-  | Type | [Message Type](#types) | 1 | 8 | - |
-  | Tick¹ | int | 4 | 32 | - |
-  | Slot<sup title="New Engine">NE</sup>² | byte | 1 | 8 | - |
-  | Data | Based on Type | - | - | - |
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Type | [MessageType](#types) | 1 | 8 | - |
+| Tick<sup>1</sup> | int | 4 | 32 | - |
+| Slot<sup title="New Engine">NE</sup><sup> 2</sup> | byte | 1 | 8 | - |
+| Data | MessageData | - | - | - |
+<sup>1</sup> Old engines might not even include the message tick after the stop byte.
+<br/>
+<sup>2</sup> The term slot here refers to the selected split-screen index. This byte is only used in engines which
+support split-screen mode.
 
-  ¹ Old engines might not even include the message tick after the stop byte, see [Stop](./messages/stop).
+</TabItem>
+<TabItem value="c" label="C">
 
-  ² The term slot here refers to the selected split-screen index. This byte is only used in engines which support
-  split-screen mode.
+```c
+struct message_t {
+    message_type type;
+    int tick;
+    char slot;
+    message_data_t* data;
+};
+```
 
-  </TabItem>
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct message_t {
+    message_type type;
+    int32_t tick;
+    int8_t slot;
+    message_data_t* data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class Message {
+    public MessageType Type { get; set; }
+    public int Tick { get; set; }
+    public byte Slot { get; set; }
+    public MessageData Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class Message {
+  /** @type {MessageType} */
+  type;
+  /** @type {number} */
+  tick;
+  /** @type {number} */
+  slot;
+  /** @type {MessageData} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+class Message {
+  public type?: MessageType;
+  public tick?: number;
+  public slot?: number;
+  public data?: MessageData;
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type Message struct {
+	Type MessageType
+	Tick int32
+	Slot int8
+	Data MessageData
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct Message {
+    pub r#type: MessageType,
+    pub tick: i32,
+    pub slot: i8,
+    pub data: MessageData,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const Message = struct {
+    type: message_type,
+    tick: i32,
+    slot: i8,
+    data: message_data,
+};
+```
+
+</TabItem>
 </Tabs>
 
 <!-- @dem-gen-end:Message -->

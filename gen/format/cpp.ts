@@ -1,50 +1,58 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { DemEnum, DemField, DemType } from "../dem.ts";
+import {
+  FormatContext,
+  FormatEnumContext,
+  FormatFieldContext,
+} from "./formatter.ts";
 import { toSnakeCase } from "../utils.ts";
 import { Formatter } from "./formatter.ts";
 
 export class Cpp implements Formatter {
-  genStruct(type: DemType, out: string[]): void {
-    out.push(`struct ${toSnakeCase(type.name)}_t {`);
-    type.fields.forEach((field) => {
-      out.push(`    ${this.genField(field)};`);
+  genStruct(ctx: FormatContext, out: string[]): void {
+    out.push(`struct ${toSnakeCase(ctx.type.name)}_t {`);
+    ctx.type.fields.forEach((field) => {
+      out.push(`    ${this.genField({ ...ctx, field })};`);
     });
     out.push(`};`);
   }
-  genField(field: DemField): string {
-    switch (field.type) {
+  genField(ctx: FormatFieldContext): string {
+    switch (ctx.field.type) {
       case "bool":
-        return `bool ${toSnakeCase(field.name)}`;
+        return `bool ${toSnakeCase(ctx.field.name)}`;
+      case "byte":
+        return `int8_t ${toSnakeCase(ctx.field.name)}`;
       case "int": {
-        switch (field.bits) {
+        switch (ctx.field.bits) {
           case 8:
           case 16:
           case 32:
           case 64:
           case 128:
-            return `int${field.bits}_t ${toSnakeCase(field.name)}`;
+            return `int${ctx.field.bits}_t ${toSnakeCase(ctx.field.name)}`;
           default:
-            return `int ${toSnakeCase(field.name)}`;
+            return `int ${toSnakeCase(ctx.field.name)}`;
         }
       }
       case "float":
-        return `float32_t ${toSnakeCase(field.name)}`;
+        return `float32_t ${toSnakeCase(ctx.field.name)}`;
       case "string":
-        return `std::string ${toSnakeCase(field.name)}`;
+        return `std::string ${toSnakeCase(ctx.field.name)}`;
       default: {
-        if (field.type.endsWith("[]")) {
-          return `std::vector<${toSnakeCase(field.type.slice(0, -2))}_t> ${
-            toSnakeCase(field.name)
+        if (ctx.field.type.endsWith("[]")) {
+          return `std::vector<${toSnakeCase(ctx.field.type.slice(0, -2))}_t> ${
+            toSnakeCase(ctx.field.name)
           }`;
         } else {
-          return `${toSnakeCase(field.type)}_t ${toSnakeCase(field.name)}`;
+          return `${toSnakeCase(ctx.field.type)}${
+            ctx.field.enum ? "" : "_t*"
+          } ${toSnakeCase(ctx.field.name)}`;
         }
       }
     }
   }
-  genEnum(type: DemEnum, out: string[]): void {
+  genEnum(ctx: FormatEnumContext, out: string[]): void {
     throw new Error("Method not implemented.");
   }
 }

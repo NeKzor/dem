@@ -2,7 +2,15 @@
   "tasks": {
     "gen": "deno run --allow-read=.dem.json,.dem.map.json,docs --allow-write=docs gen/main.ts"
   },
+  "fmt": {
+    "include": [
+      "gen"
+    ]
+  },
   "lint": {
+    "include": [
+      "gen"
+    ],
     "rules": {
       "exclude": [
         "no-fallthrough"

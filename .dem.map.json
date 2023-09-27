@@ -12,7 +12,8 @@
     },
     {
       "name": "MessageType",
-      "path": "docs/messages.mdx"
+      "path": "docs/messages.mdx",
+      "ref": "#types"
     },
     {
       "name": "CmdInfo",

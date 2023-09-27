@@ -1,15 +1,19 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { DemEnum, DemField, DemType } from "../dem.ts";
+import {
+  FormatContext,
+  FormatEnumContext,
+  FormatFieldContext,
+} from "./formatter.ts";
 import { Formatter } from "./formatter.ts";
 
 export class Go implements Formatter {
-  genStruct(type: DemType, out: string[]): void {
-    out.push(`type ${type.name} struct {`);
+  genStruct(ctx: FormatContext, out: string[]): void {
+    out.push(`type ${ctx.type.name} struct {`);
     let longestName = 0;
-    const fields = type.fields.map((field) => {
-      const fieldGen = this.genField(field);
+    const fields = ctx.type.fields.map((field) => {
+      const fieldGen = this.genField({ ...ctx, field });
       const [name, type] = fieldGen.split(" ", 2);
       if (name.length > longestName) {
         longestName = name.length;
@@ -20,38 +24,40 @@ export class Go implements Formatter {
       const padding = (longestName + 1) - name.length;
       out.push(`\t${name}${" ".repeat(padding)}${type}`);
     });
-    out.push(`};`);
+    out.push(`}`);
   }
-  genField(field: DemField): string {
-    switch (field.type) {
+  genField(ctx: FormatFieldContext): string {
+    switch (ctx.field.type) {
       case "bool":
-        return `${field.name}: bool`;
+        return `${ctx.field.name} bool`;
+      case "byte":
+        return `${ctx.field.name} int8`;
       case "int": {
-        switch (field.bits) {
+        switch (ctx.field.bits) {
           case 8:
           case 16:
           case 32:
           case 64:
           case 128:
-            return `${field.name} int${field.bits}`;
+            return `${ctx.field.name} int${ctx.field.bits}`;
           default:
-            return `${field.name} int`;
+            return `${ctx.field.name} int`;
         }
       }
       case "float":
-        return `${field.name} float32`;
+        return `${ctx.field.name} float32`;
       case "string":
-        return `${field.name} string`;
+        return `${ctx.field.name} string`;
       default: {
-        if (field.type.endsWith("[]")) {
-          return `${field.name} []${field.type.slice(0, -2)}`;
+        if (ctx.field.type.endsWith("[]")) {
+          return `${ctx.field.name} []${ctx.field.type.slice(0, -2)}`;
         } else {
-          return `${field.name} ${field.type}`;
+          return `${ctx.field.name} ${ctx.field.type}`;
         }
       }
     }
   }
-  genEnum(type: DemEnum, out: string[]): void {
+  genEnum(ctx: FormatEnumContext, out: string[]): void {
     throw new Error("Method not implemented.");
   }
 }

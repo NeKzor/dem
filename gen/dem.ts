@@ -9,6 +9,8 @@ export interface DemField {
   type: DemFieldType | string;
   value?: string;
   description?: string;
+  newEngine?: boolean;
+  enum?: boolean;
 }
 
 export interface DemType {
@@ -36,9 +38,10 @@ export interface Dem {
 export interface Mapping {
   name: string;
   path: string;
+  ref?: string;
   generate?: boolean;
 }
 
 export interface DemMapping {
-  mappings: [];
+  mappings: Mapping[];
 }

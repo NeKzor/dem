@@ -71,25 +71,26 @@
         {
           "name": "Type",
           "bits": 8,
-          "type": "MessageType"
+          "type": "MessageType",
+          "enum": true
         },
         {
           "name": "Tick",
           "bits": 32,
           "type": "int",
-          "description": "Old engines might not even include the message tick after the stop byte, see [Stop]"
+          "description": "Old engines might not even include the message tick after the stop byte."
         },
         {
           "name": "Slot",
           "bits": 8,
-          "type": "int",
-          "description": "The term slot here refers to the selected split-screen index. This byte is only used in engines which support split-screen mode."
+          "type": "byte",
+          "description": "The term slot here refers to the selected split-screen index. This byte is only used in engines which support split-screen mode.",
+          "newEngine": true
         },
         {
           "name": "Data",
-          "bits": 8,
-          "type": "T",
-          "description": "Based on Type"
+          "bits": 0,
+          "type": "MessageData"
         }
       ]
     }

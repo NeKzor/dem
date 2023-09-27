@@ -1,14 +1,15 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { Dem, DemMapping } from "./dem.ts";
+import { Dem, DemField, DemMapping } from "./dem.ts";
+import { FormatContext, FormatEnumContext } from "./format/formatter.ts";
 import {
   C,
   Cpp,
   Csharp,
+  Formatter,
   Go,
   Js,
-  Formatter,
   Overview,
   Rust,
   Ts,
@@ -49,12 +50,32 @@ const genType = async (
   out.push(`import TabItem from '@theme/TabItem';`);
   out.push("");
   out.push(`<Tabs groupId="lang">`);
+
+  const ctx: FormatContext = {
+    type: demType,
+    types: dem.types,
+    enums: dem.enums,
+    getLink: (field: DemField) => {
+      const typeName = field.type.endsWith("[]")
+        ? field.type.slice(0, -2)
+        : field.type;
+      const mapping = mappings.find(({ name }) => name === typeName);
+      if (!mapping) {
+        return field.type;
+      }
+      if (mapping.ref) {
+        return `[${field.type}](${mapping.ref})`;
+      }
+      return `[${field.type}](${mapping.path.slice(4)})`;
+    },
+  };
+
   formatters.forEach(([language, label, value]) => {
-    const isCode = value !== 'overview';
+    const isCode = value !== "overview";
     out.push(`<TabItem value="${value}" label="${label}">`);
     out.push("");
     isCode && out.push(`\`\`\`${value}`);
-    language.genStruct(demType, out);
+    language.genStruct(ctx, out);
     isCode && out.push(`\`\`\``);
     out.push("");
     out.push(`</TabItem>`);
@@ -80,10 +101,14 @@ const genEnum = async (
   start: number,
   end: number,
 ): Promise<boolean> => {
-  const demType = dem.enums.find((type) => type.name === name);
-  if (!demType) {
+  const demEnum = dem.enums.find((type) => type.name === name);
+  if (!demEnum) {
     return false;
   }
+
+  const ctx: FormatEnumContext = {
+    enum: demEnum,
+  };
 
   const out: string[] = [];
   out.push(`import Tabs from '@theme/Tabs';`);
@@ -93,7 +118,7 @@ const genEnum = async (
     out.push(`<TabItem value="${value}" label="${label}">`);
     out.push("");
     out.push(`\`\`\`${value}`);
-    language.genEnum(demType, out);
+    language.genEnum(ctx, out);
     out.push(`\`\`\``);
     out.push("");
     out.push(`</TabItem>`);

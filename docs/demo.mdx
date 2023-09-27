@@ -27,7 +27,7 @@ import TabItem from '@theme/TabItem';
 | PlaybackTicks | int | 4 | 32 | - |
 | PlaybackFrames | int | 4 | 32 | - |
 | SignOnLength | int | 4 | 32 | - |
-| DemoMessages | Message[] | - | - | - |
+| DemoMessages | [Message[]](/messages/messages.mdx) | - | - | - |
 
 </TabItem>
 <TabItem value="c" label="C">
@@ -94,18 +94,30 @@ class Demo {
 
 ```js
 class Demo {
-  /** @type {string} */ demoFileStamp;
-  /** @type {number} */ demoProtocol;
-  /** @type {number} */ networkProtocol;
-  /** @type {string} */ serverName;
-  /** @type {string} */ clientName;
-  /** @type {string} */ mapName;
-  /** @type {string} */ gameDirectory;
-  /** @type {number} */ playbackTime;
-  /** @type {number} */ playbackTicks;
-  /** @type {number} */ playbackFrames;
-  /** @type {number} */ signOnLength;
-  /** @type {Message[]} */ demoMessages;
+  /** @type {string} */
+  demoFileStamp;
+  /** @type {number} */
+  demoProtocol;
+  /** @type {number} */
+  networkProtocol;
+  /** @type {string} */
+  serverName;
+  /** @type {string} */
+  clientName;
+  /** @type {string} */
+  mapName;
+  /** @type {string} */
+  gameDirectory;
+  /** @type {number} */
+  playbackTime;
+  /** @type {number} */
+  playbackTicks;
+  /** @type {number} */
+  playbackFrames;
+  /** @type {number} */
+  signOnLength;
+  /** @type {Message[]} */
+  demoMessages;
 }
 ```
 
@@ -146,7 +158,7 @@ type Demo struct {
 	PlaybackFrames  int32
 	SignOnLength    int32
 	DemoMessages    []Message
-};
+}
 ```
 
 </TabItem>
