@@ -1,0 +1,5 @@
+{
+    "tasks": {
+        "gen": "deno run --allow-read=.dem.json,.dem.map.json,docs --allow-write=docs gen.ts"
+    }
+}

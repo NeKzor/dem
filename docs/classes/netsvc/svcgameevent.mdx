@@ -1,0 +1,13 @@
+# SvcGameEvent
+
+Part of [Net/Svc](../netsvc) message.
+
+The data for this message can only be decoded with [SvcGameEventList](./svcgameeventlist) which appears once before this message is allowed to appear.
+
+<!-- @dem-gen-begin:SvcGameEvent -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Length | int | 1.375 | 11 | - |
+| Data | byte[] | Length / 8 | Length | [GameEvent[]](../gameevent) |
+
+<!-- @dem-gen-end:SvcGameEvent -->

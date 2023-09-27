@@ -1,0 +1,113 @@
+{
+  "types": [
+    {
+      "name": "Demo",
+      "fields": [
+        {
+          "name": "DemoFileStamp",
+          "bits": 64,
+          "type": "string",
+          "value": "HL2DEMO\\0"
+        },
+        {
+          "name": "DemoProtocol",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "NetworkProtocol",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "ServerName",
+          "bits": 2080,
+          "type": "string"
+        },
+        {
+          "name": "ClientName",
+          "bits": 2080,
+          "type": "string"
+        },
+        {
+          "name": "MapName",
+          "bits": 2080,
+          "type": "string"
+        },
+        {
+          "name": "GameDirectory",
+          "bits": 2080,
+          "type": "string"
+        },
+        {
+          "name": "PlaybackTime",
+          "bits": 32,
+          "type": "float"
+        },
+        {
+          "name": "PlaybackTicks",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "PlaybackFrames",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "SignOnLength",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "DemoMessages",
+          "type": "Message[]"
+        }
+      ]
+    },
+    {
+      "name": "Message",
+      "fields": [
+        {
+          "name": "Type",
+          "bits": 8,
+          "type": "MessageType"
+        },
+        {
+          "name": "Tick",
+          "bits": 32,
+          "type": "int",
+          "description": "Old engines might not even include the message tick after the stop byte, see [Stop]"
+        },
+        {
+          "name": "Slot",
+          "bits": 8,
+          "type": "int",
+          "description": "The term slot here refers to the selected split-screen index. This byte is only used in engines which support split-screen mode."
+        },
+        {
+          "name": "Data",
+          "bits": 8,
+          "type": "T",
+          "description": "Based on Type"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "MessageType",
+      "values:": [
+        { "name": "SignOn", "ref": "/messages/signon", "value": 1 },
+        { "name": "Packet", "ref": "/messages/packet", "value": 2 },
+        { "name": "SyncTick", "ref": "/messages/synctick", "value": 3 },
+        { "name": "Consolecmd", "ref": "/messages/consolecmd", "value": 4 },
+        { "name": "Usercmd", "ref": "/messages/usercmd", "value": 5 },
+        { "name": "DataTables", "ref": "/messages/datatables", "value": 6 },
+        { "name": "Stop", "ref": "/messages/stop", "value": 7 },
+        { "name": "CustomData", "ref": "/messages/customdata", "value": 8 },
+        { "name": "StringTables", "ref": "/messages/stringtables", "value": 9, "description": "8 for old engine." }
+      ]
+    }
+  ]
+}

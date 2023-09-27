@@ -1,0 +1,67 @@
+# Net/Svc Message
+
+Part of [Packet](../messages/packet) message.
+
+<!-- @dem-gen-begin:NetSvcMessage -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Type | [Message Type](#types) | 0.75 | 6 | - |
+| Data | Based on Type | - | - | - |
+
+<!-- @dem-gen-end:NetSvcMessage -->
+
+## Types
+
+<!-- @dem-gen-begin:NetSvcMessageType -->
+| Name | Value | Description |
+| --- | --- | --- |
+| [NetNop](./netsvc/netnop) | 0 | - |
+| [NetDisconnect](./netsvc/netdisconnect) | 1 | - |
+| [NetFile](./netsvc/netfile) | 2 | - |
+| [NetSplitScreenUser](./netsvc/netsplitscreenuser) | 3 | New engine. |
+| [NetTick](./netsvc/nettick) | 4 | 3 in old engine. |
+| [NetStringCmd](./netsvc/netstringcmd) | 5 | 4 in old engine. |
+| [NetSetConVar](./netsvc/netsetconvar) | 6 | 5 in old engine. |
+| [NetSignonState](./netsvc/netsignonstate) | 7 | 6 in old engine. |
+| [SvcServerInfo](./netsvc/svcserverinfo) | 8 | - |
+| [SvcSendTable](./netsvc/svcsendtable) | 9 | - |
+| [SvcClassInfo](./netsvc/svcclassinfo) | 10 | - |
+| [SvcSetPause](./netsvc/svcsetpause) | 11 | - |
+| [SvcCreateStringTable](./netsvc/svccreatestringtable) | 12 | - |
+| [SvcUpdateStringTable](./netsvc/svcupdatestringtable) | 13 | - |
+| [SvcVoiceInit](./netsvc/svcvoiceinit) | 14 | - |
+| [SvcVoiceData](./netsvc/svcvoicedata) | 15 | - |
+| [SvcPrint](./netsvc/svcprint) | 16 | 7 in old engine. |
+| [SvcSounds](./netsvc/svcsounds) | 17 | - |
+| [SvcSetView](./netsvc/svcsetview) | 18 | - |
+| [SvcFixAngle](./netsvc/svcfixangle) | 19 | - |
+| [SvcCrosshairAngle](./netsvc/svccrosshairangle) | 20 | - |
+| [SvcBspDecal](./netsvc/svcbspdecal) | 21 | - |
+| [SvcSplitScreen](./netsvc/svcsplitscreen) | 22 | New engine. |
+| [SvcUserMessage](./netsvc/svcusermessage) | 23 | - |
+| [SvcEntityMessage](./netsvc/svcentitymessage) | 24 | - |
+| [SvcGameEvent](./netsvc/svcgameevent) | 25 | - |
+| [SvcPacketEntities](./netsvc/svcpacketentities) | 26 | - |
+| [SvcTempEntities](./netsvc/svctempentities) | 27 | - |
+| [SvcPrefetch](./netsvc/svcprefetch) | 28 | - |
+| [SvcMenu](./netsvc/svcmenu) | 29 | - |
+| [SvcGameEventList](./netsvc/svcgameeventlist) | 30 | - |
+| [SvcGetCvarValue](./netsvc/svcgetcvarvalue) | 31 | - |
+| [SvcCmdKeyValues](./netsvc/svccmdkeyvalues) | 32 | 34 in CS:GO. |
+| [SvcPaintmapData](./netsvc/svcpaintmapdata) | 33 | New engine. |
+| SvcEncryptedData | 35 | Seen in CS:GO. |
+| SvcHltvReplay | 36 | Seen in CS:GO. |
+| SvcBroadcastCommand | 38 | Seen in CS:GO. |
+| NetPlayerAvatarData | 100 | Seen in CS:GO. |
+
+<!-- @dem-gen-end:NetSvcMessageType -->
+
+## Pseudocode Example
+
+```rust
+while bits_left > 6 {
+    let message_type = read_bits(6);
+
+    read_net_or_svc_message(message_type);
+}
+```

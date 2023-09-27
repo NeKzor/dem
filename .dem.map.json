@@ -1,0 +1,182 @@
+{
+  "mappings": [
+    {
+      "name": "Demo",
+      "path": "docs/demo.mdx",
+      "generate": true
+    },
+    {
+      "name": "Message",
+      "path": "docs/messages.mdx",
+      "generate": true
+    },
+    {
+      "name": "MessageType",
+      "path": "docs/messages.mdx"
+    },
+    {
+      "name": "CmdInfo",
+      "path": "docs/classes/cmdinfo.mdx"
+    },
+    {
+      "name": "GameEvent",
+      "path": "docs/classes/gameevent.mdx"
+    },
+    {
+      "name": "NetSvcMessage",
+      "path": "docs/classes/netsvc.mdx"
+    },
+    {
+      "name": "SendTable",
+      "path": "docs/classes/sendtable.mdx"
+    },
+    {
+      "name": "ServerClassInfo",
+      "path": "docs/classes/serverclassinfo.mdx"
+    },
+    {
+      "name": "StringTable",
+      "path": "docs/classes/stringtable.mdx"
+    },
+    {
+      "name": "UserCmdInfo",
+      "path": "docs/classes/usercmdinfo.mdx"
+    },
+    {
+      "name": "NetDisconnect",
+      "path": "docs/classes/netsvc/netdisconnect.mdx"
+    },
+    {
+      "name": "NetFile",
+      "path": "docs/classes/netsvc/netfile.mdx"
+    },
+    {
+      "name": "NetNop",
+      "path": "docs/classes/netsvc/netnop.mdx"
+    },
+    {
+      "name": "NetSetConVar",
+      "path": "docs/classes/netsvc/netsetconvar.mdx"
+    },
+    {
+      "name": "NetSignonState",
+      "path": "docs/classes/netsvc/netsignonstate.mdx"
+    },
+    {
+      "name": "NetSplitScreenUser",
+      "path": "docs/classes/netsvc/netsplitscreenuser.mdx"
+    },
+    {
+      "name": "NetStringCmd",
+      "path": "docs/classes/netsvc/netstringcmd.mdx"
+    },
+    {
+      "name": "NetTick",
+      "path": "docs/classes/netsvc/nettick.mdx"
+    },
+    {
+      "name": "SvcBspDecal",
+      "path": "docs/classes/netsvc/svcbspdecal.mdx"
+    },
+    {
+      "name": "SvcClassInfo",
+      "path": "docs/classes/netsvc/svcclassinfo.mdx"
+    },
+    {
+      "name": "SvcCmdKeyValues",
+      "path": "docs/classes/netsvc/svccmdkeyvalues.mdx"
+    },
+    {
+      "name": "SvcCreateStringTable",
+      "path": "docs/classes/netsvc/svccreatestringtable.mdx"
+    },
+    {
+      "name": "SvcCrosshairAngle",
+      "path": "docs/classes/netsvc/svccrosshairangle.mdx"
+    },
+    {
+      "name": "SvcEntityMessage",
+      "path": "docs/classes/netsvc/svcentitymessage.mdx"
+    },
+    {
+      "name": "SvcFixAngle",
+      "path": "docs/classes/netsvc/svcfixangle.mdx"
+    },
+    {
+      "name": "SvcGameEventlist",
+      "path": "docs/classes/netsvc/svcgameeventlist.mdx"
+    },
+    {
+      "name": "SvcGameEvent",
+      "path": "docs/classes/netsvc/svcgameevent.mdx"
+    },
+    {
+      "name": "SvcGetCvarValue",
+      "path": "docs/classes/netsvc/svcgetcvarvalue.mdx"
+    },
+    {
+      "name": "SvcMenu",
+      "path": "docs/classes/netsvc/svcmenu.mdx"
+    },
+    {
+      "name": "SvcPacketEntities",
+      "path": "docs/classes/netsvc/svcpacketentities.mdx"
+    },
+    {
+      "name": "SvcPaintmapData",
+      "path": "docs/classes/netsvc/svcpaintmapdata.mdx"
+    },
+    {
+      "name": "SvcPrefetch",
+      "path": "docs/classes/netsvc/svcprefetch.mdx"
+    },
+    {
+      "name": "SvcPrint",
+      "path": "docs/classes/netsvc/svcprint.mdx"
+    },
+    {
+      "name": "SvcSendTable",
+      "path": "docs/classes/netsvc/svcsendtable.mdx"
+    },
+    {
+      "name": "SvcServerInfo",
+      "path": "docs/classes/netsvc/svcserverinfo.mdx"
+    },
+    {
+      "name": "SvcSetPause",
+      "path": "docs/classes/netsvc/svcsetpause.mdx"
+    },
+    {
+      "name": "SvcSetView",
+      "path": "docs/classes/netsvc/svcsetview.mdx"
+    },
+    {
+      "name": "SvcSounds",
+      "path": "docs/classes/netsvc/svcsounds.mdx"
+    },
+    {
+      "name": "SvcSplitScreen",
+      "path": "docs/classes/netsvc/svcsplitscreen.mdx"
+    },
+    {
+      "name": "SvcTempEntities",
+      "path": "docs/classes/netsvc/svctempentities.mdx"
+    },
+    {
+      "name": "SvcUpdateStringTable",
+      "path": "docs/classes/netsvc/svcupdatestringtable.mdx"
+    },
+    {
+      "name": "SvcUserMessage",
+      "path": "docs/classes/netsvc/svcusermessage.mdx"
+    },
+    {
+      "name": "SvcVoiceData",
+      "path": "docs/classes/netsvc/svcvoicedata.mdx"
+    },
+    {
+      "name": "SvcVoiceInit",
+      "path": "docs/classes/netsvc/svcvoiceinit.mdx"
+    }
+  ]
+}

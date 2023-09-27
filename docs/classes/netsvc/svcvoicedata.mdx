@@ -1,0 +1,14 @@
+# SvcVoiceData
+
+Part of [Net/Svc](../netsvc) message.
+
+<!-- @dem-gen-begin:SvcVoiceData -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Client | int | 1 | 8 | - |
+| Proximity | int | 1 | 8 | - |
+| Length | int | 2 | 16 | - |
+| Audible | bool[] | MAX_SPLITSCREEN_CLIENTS / 8 | MAX_SPLITSCREEN_CLIENTS | - |
+| Data | byte[] | Length / 8 | Length | - |
+
+<!-- @dem-gen-end:SvcVoiceData -->

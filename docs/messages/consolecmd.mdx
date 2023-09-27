@@ -1,0 +1,14 @@
+# ConsoleCmd
+
+This message contains a console command¹ which was executed by the player during a session via a key binding or via the
+developer console.
+
+<!-- @dem-gen-begin:ConsoleCmd -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Size | int | 4 | 32 | - |
+| Data | string | Size | Size*8 | - |
+
+¹ Commands cannot appear in demo files if they are flagged as `FCVAR_DONTRECORD`.
+
+<!-- @dem-gen-end:ConsoleCmd -->

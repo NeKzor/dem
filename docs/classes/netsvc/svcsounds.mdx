@@ -1,0 +1,35 @@
+# SvcSounds
+
+Part of [Net/Svc](../netsvc) message.
+
+<!-- @dem-gen-begin:SvcSounds -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| ReliableSound | bool | 0.125 | 1 | - |
+| NumSounds¹ | int | 1 | 8 | 1 if ReliableSound bit is set. |
+| Length | int | 1 if ReliableSound bit is set, otherwise 2. | 8 if ReliableSound bit is set, otherwise 16. | - |
+| Data | byte[] | Length / 8 | Length | SoundInfo[] |
+
+¹ Optional: Only set if the `ReliableSound` bit is zero.
+
+<!-- @dem-gen-end:SvcSounds -->
+
+## Pseudocode Example
+
+```rust
+let reliable_sound = read_one_bit();
+
+let num_sounds = if reliable_sound {
+    1
+} else {
+    read_bits(8)
+};
+
+let length = if reliable_sound {
+    read_bits(8)
+} else {
+    read_bits(16)
+};
+
+let data = read_bit_slice(length);
+```

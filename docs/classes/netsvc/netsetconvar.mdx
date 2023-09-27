@@ -1,0 +1,22 @@
+# NetSetConVar
+
+Part of [Net/Svc](../netsvc) message.
+
+<!-- @dem-gen-begin:NetSetConVar -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| Length | int | 1 | 8 | - |
+| ConVars | ConVar[] | - | - | ConVar[] |
+
+<!-- @dem-gen-end:NetSetConVar -->
+
+## Pseudocode Example
+
+```rust
+let length = read_le_i8();
+
+for _ 0..length {
+    let convar_name =  read_ascii_string();
+    let convar_value = read_ascii_string();
+}
+```

@@ -1,0 +1,22 @@
+# SignOn & Packet
+
+Packets contain simulated information about a session. A SignOn message is the same as a Packet message but only
+appears once at the very beginning to indicate that the server is ready.
+
+<!-- @dem-gen-begin:Packet -->
+| Name | Type | Size in bytes | Size in bits | Value |
+| --- | --- | --- | --- | --- |
+| PacketInfo | byte[] | 76*MSSC | 76*MSSC*8 | [CmdInfo[MSSC]](../classes/cmdinfo) |
+| InSequence | int | 4 | 32 | - |
+| OutSequence | int | 4 | 32 | - |
+| Size | int | 4 | 32 | - |
+| Data | byte[] | Size | Size*8 | [Net/Svc-Message[]](../classes/netsvc) |
+
+<!-- @dem-gen-end:Packet -->
+
+## MaxSplitScreenClients (MSSC)
+
+This value is most likely 1 for single-player-only games but 2 for multiplayer games which support split screen mode
+(Portal 2, CS:GO etc.). Although it can be misleading if a game does not have multiplayer mode but yet supports this
+feature. The console command `maxplayers` can be executed in the developer console and should help to find out the exact
+value for a specific game.
