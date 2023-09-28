@@ -1,7 +1,7 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { Dem, DemField, DemMapping } from "./dem.ts";
+import { Dem, DemEnumValue, DemField, DemMapping } from "./dem.ts";
 import { FormatContext, FormatEnumContext } from "./format/formatter.ts";
 import {
   C,
@@ -35,6 +35,26 @@ const { mappings } = JSON.parse(
 
 const importCache = new Set<string>();
 
+const getLink = (field: DemField) => {
+  const typeName = field.type.endsWith("[]")
+    ? field.type.slice(0, -2)
+    : field.type;
+  const mapping = mappings.find(({ name }) => name === typeName);
+  if (!mapping) {
+    return field.type;
+  }
+  if (mapping.ref) {
+    return `[${field.type}](${mapping.ref})`;
+  }
+  return `[${field.type}](${mapping.path.slice(4)})`;
+};
+
+const getEnumLink = (value: DemEnumValue) => {
+  const typeName = value.name;
+  const mapping = mappings.find(({ name }) => name === typeName);
+  return mapping ? `[${typeName}](${mapping.path.slice(4)})` : typeName;
+};
+
 const genType = async (
   path: string,
   content: string[],
@@ -62,19 +82,7 @@ const genType = async (
     type: demType,
     types: dem.types,
     enums: dem.enums,
-    getLink: (field: DemField) => {
-      const typeName = field.type.endsWith("[]")
-        ? field.type.slice(0, -2)
-        : field.type;
-      const mapping = mappings.find(({ name }) => name === typeName);
-      if (!mapping) {
-        return field.type;
-      }
-      if (mapping.ref) {
-        return `[${field.type}](${mapping.ref})`;
-      }
-      return `[${field.type}](${mapping.path.slice(4)})`;
-    },
+    getLink,
   };
 
   formatters.forEach(([language, label, value]) => {
@@ -116,6 +124,7 @@ const genEnum = async (
 
   const ctx: FormatEnumContext = {
     enum: demEnum,
+    getLink: getEnumLink,
   };
 
   const out: string[] = [];

@@ -20,7 +20,6 @@ export interface DemType {
 
 export interface DemEnumValue {
   name: string;
-  ref?: string;
   description?: string;
   value: number;
 }

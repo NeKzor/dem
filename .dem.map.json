@@ -17,6 +17,51 @@
       "generate": true
     },
     {
+      "name": "SignOn",
+      "path": "docs/messages/packet.mdx",
+      "generate": false
+    },
+    {
+      "name": "Packet",
+      "path": "docs/messages/packet.mdx",
+      "generate": false
+    },
+    {
+      "name": "SyncTick",
+      "path": "docs/messages/synctick.mdx",
+      "generate": false
+    },
+    {
+      "name": "Consolecmd",
+      "path": "docs/messages/consolecmd.mdx",
+      "generate": false
+    },
+    {
+      "name": "Usercmd",
+      "path": "docs/messages/usercmd.mdx",
+      "generate": false
+    },
+    {
+      "name": "DataTables",
+      "path": "docs/messages/datatables.mdx",
+      "generate": false
+    },
+    {
+      "name": "Stop",
+      "path": "docs/messages/stop.mdx",
+      "generate": false
+    },
+    {
+      "name": "CustomData",
+      "path": "docs/messages/customdata.mdx",
+      "generate": false
+    },
+    {
+      "name": "StringTables",
+      "path": "docs/messages/stringtables.mdx",
+      "generate": false
+    },
+    {
       "name": "CmdInfo",
       "path": "docs/classes/cmdinfo.mdx"
     },

@@ -51,7 +51,11 @@ export class Overview implements Formatter {
     out.push(`| Type | Value | Description |`);
     out.push(`| --- | --- | --- |`);
     ctx.enum.values.forEach((value) => {
-      out.push(`| ${value.name} | ${value.value} | ${value.description ?? '-'} |`);
+      out.push(
+        `| ${ctx.getLink(value)} | ${value.value} | ${
+          value.description ?? "-"
+        } |`,
+      );
     });
   }
 }

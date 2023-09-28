@@ -99,15 +99,15 @@
     {
       "name": "MessageType",
       "values": [
-        { "name": "SignOn", "ref": "/messages/signon", "value": 1 },
-        { "name": "Packet", "ref": "/messages/packet", "value": 2 },
-        { "name": "SyncTick", "ref": "/messages/synctick", "value": 3 },
-        { "name": "Consolecmd", "ref": "/messages/consolecmd", "value": 4 },
-        { "name": "Usercmd", "ref": "/messages/usercmd", "value": 5 },
-        { "name": "DataTables", "ref": "/messages/datatables", "value": 6 },
-        { "name": "Stop", "ref": "/messages/stop", "value": 7 },
-        { "name": "CustomData", "ref": "/messages/customdata", "value": 8 },
-        { "name": "StringTables", "ref": "/messages/stringtables", "value": 9, "description": "8 for old engine." }
+        { "name": "SignOn", "value": 1 },
+        { "name": "Packet", "value": 2 },
+        { "name": "SyncTick", "value": 3 },
+        { "name": "Consolecmd", "value": 4 },
+        { "name": "Usercmd", "value": 5 },
+        { "name": "DataTables", "value": 6 },
+        { "name": "Stop", "value": 7 },
+        { "name": "CustomData", "value": 8 },
+        { "name": "StringTables", "value": 9, "description": "8 for old engine." }
       ]
     }
   ]

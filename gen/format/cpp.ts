@@ -55,7 +55,9 @@ export class Cpp implements Formatter {
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`enum class ${toSnakeCase(ctx.enum.name)} {`);
     ctx.enum.values.forEach((value) => {
-      out.push(`    ${toSnakeCase(value.name).toUpperCase()} = ${value.value},`);
+      out.push(
+        `    ${toSnakeCase(value.name).toUpperCase()} = ${value.value},`,
+      );
     });
     out.push(`};`);
   }

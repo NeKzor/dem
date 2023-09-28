@@ -44,9 +44,13 @@ export class C implements Formatter {
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`enum ${toSnakeCase(ctx.enum.name)} {`);
-    const prefix = ctx.enum.name.replaceAll(/[a-z]+/g, '');
+    const prefix = ctx.enum.name.replaceAll(/[a-z]+/g, "");
     ctx.enum.values.forEach((value) => {
-      out.push(`    ${prefix}_${toSnakeCase(value.name).toUpperCase()} = ${value.value},`);
+      out.push(
+        `    ${prefix}_${
+          toSnakeCase(value.name).toUpperCase()
+        } = ${value.value},`,
+      );
     });
     out.push(`};`);
   }

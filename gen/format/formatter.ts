@@ -1,7 +1,7 @@
 // Copyright (c) 2023, NeKz
 // SPDX-License-Identifier: MIT
 
-import { DemEnum, DemField, DemType } from "../dem.ts";
+import { DemEnum, DemEnumValue, DemField, DemType } from "../dem.ts";
 
 export interface FormatContext {
   type: DemType;
@@ -16,6 +16,7 @@ export interface FormatFieldContext extends FormatContext {
 
 export interface FormatEnumContext {
   enum: DemEnum;
+  getLink: (value: DemEnumValue) => string;
 }
 
 export interface Formatter {
