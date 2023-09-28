@@ -83,9 +83,18 @@ const config = {
                 label: 'Classes',
                 to: '/classes',
               },
+            ],
+          },
+          {
+            title: 'Examples',
+            items: [
               {
-                label: 'Examples',
-                to: '/examples',
+                label: 'Libraries',
+                to: '/libraries',
+              },
+              {
+                label: 'Showcases',
+                to: '/showcases',
               },
             ],
           },
