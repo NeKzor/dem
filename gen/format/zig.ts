@@ -54,7 +54,9 @@ export class Zig implements Formatter {
             case "string":
               return `${toSnakeCase(ctx.field.name)}: [][]u8`;
             default:
-              return `${toSnakeCase(ctx.field.name)}: []${ctx.field.type.slice(0, -2)}`;
+              return `${toSnakeCase(ctx.field.name)}: []${
+                ctx.field.type.slice(0, -2)
+              }`;
           }
         } else {
           return `${toSnakeCase(ctx.field.name)}: ${

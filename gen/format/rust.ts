@@ -54,7 +54,9 @@ export class Rust implements Formatter {
             case "string":
               return `${toSnakeCase(ctx.field.name)}: Vec<String>`;
             default:
-              return `${toSnakeCase(ctx.field.name)}: Vec<${ctx.field.type.slice(0, -2)}>`;
+              return `${toSnakeCase(ctx.field.name)}: Vec<${
+                ctx.field.type.slice(0, -2)
+              }>`;
           }
         } else {
           return `${

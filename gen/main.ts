@@ -36,7 +36,7 @@ const { mappings } = JSON.parse(
 const importCache = new Set<string>();
 
 const getLink = (field: DemField | string) => {
-  const fieldType = typeof field === 'string' ? field : field.type;
+  const fieldType = typeof field === "string" ? field : field.type;
   const innerType = fieldType.endsWith("[]")
     ? fieldType.slice(0, -2)
     : fieldType;
@@ -184,7 +184,9 @@ for (const { name, path, generate } of mappings) {
   const end = content.indexOf(`<!-- @dem-gen-end:${name} -->`);
 
   if (start === -1 || end === -1) {
-    console.warn(`Missing begin-end markers in ${path} : ${name} : ${start} - ${end}`);
+    console.warn(
+      `Missing begin-end markers in ${path} : ${name} : ${start} - ${end}`,
+    );
     continue;
   }
 
