@@ -71,7 +71,7 @@
     },
     {
       "name": "NetSvcMessage",
-      "path": "docs/classes/netsvc.mdx"
+      "path": "docs/classes/netsvc/netsvc.mdx"
     },
     {
       "name": "SendTable",
