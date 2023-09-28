@@ -143,8 +143,8 @@ const Message = struct {
 | [SignOn](/messages/packet.mdx) | 1 | - |
 | [Packet](/messages/packet.mdx) | 2 | - |
 | [SyncTick](/messages/synctick.mdx) | 3 | - |
-| [Consolecmd](/messages/consolecmd.mdx) | 4 | - |
-| [Usercmd](/messages/usercmd.mdx) | 5 | - |
+| [ConsoleCmd](/messages/consolecmd.mdx) | 4 | - |
+| [UserCmd](/messages/usercmd.mdx) | 5 | - |
 | [DataTables](/messages/datatables.mdx) | 6 | - |
 | [Stop](/messages/stop.mdx) | 7 | - |
 | [CustomData](/messages/customdata.mdx) | 8 | - |
@@ -158,8 +158,8 @@ enum message_type {
     MT_SIGN_ON = 1,
     MT_PACKET = 2,
     MT_SYNC_TICK = 3,
-    MT_CONSOLECMD = 4,
-    MT_USERCMD = 5,
+    MT_CONSOLE_CMD = 4,
+    MT_USER_CMD = 5,
     MT_DATA_TABLES = 6,
     MT_STOP = 7,
     MT_CUSTOM_DATA = 8,
@@ -175,8 +175,8 @@ enum class message_type {
     SIGN_ON = 1,
     PACKET = 2,
     SYNC_TICK = 3,
-    CONSOLECMD = 4,
-    USERCMD = 5,
+    CONSOLE_CMD = 4,
+    USER_CMD = 5,
     DATA_TABLES = 6,
     STOP = 7,
     CUSTOM_DATA = 8,
@@ -192,8 +192,8 @@ enum MessageType : byte {
     SignOn = 1,
     Packet = 2,
     SyncTick = 3,
-    Consolecmd = 4,
-    Usercmd = 5,
+    ConsoleCmd = 4,
+    UserCmd = 5,
     DataTables = 6,
     Stop = 7,
     CustomData = 8,
@@ -209,8 +209,8 @@ const MessageType = {
   SignOn = 1,
   Packet = 2,
   SyncTick = 3,
-  Consolecmd = 4,
-  Usercmd = 5,
+  ConsoleCmd = 4,
+  UserCmd = 5,
   DataTables = 6,
   Stop = 7,
   CustomData = 8,
@@ -226,8 +226,8 @@ export enum MessageType {
   SignOn = 1,
   Packet = 2,
   SyncTick = 3,
-  Consolecmd = 4,
-  Usercmd = 5,
+  ConsoleCmd = 4,
+  UserCmd = 5,
   DataTables = 6,
   Stop = 7,
   CustomData = 8,
@@ -245,8 +245,8 @@ const (
 	SignOn       MessageType = 1,
 	Packet                   = 2,
 	SyncTick                 = 3,
-	Consolecmd               = 4,
-	Usercmd                  = 5,
+	ConsoleCmd               = 4,
+	UserCmd                  = 5,
 	DataTables               = 6,
 	Stop                     = 7,
 	CustomData               = 8,
@@ -262,8 +262,8 @@ pub enum MessageType {
     SignOn = 1,
     Packet = 2,
     SyncTick = 3,
-    Consolecmd = 4,
-    Usercmd = 5,
+    ConsoleCmd = 4,
+    UserCmd = 5,
     DataTables = 6,
     Stop = 7,
     CustomData = 8,
@@ -279,8 +279,8 @@ const MessageType = enum {
     sign_on = 1,
     packet = 2,
     sync_tick = 3,
-    consolecmd = 4,
-    usercmd = 5,
+    console_cmd = 4,
+    user_cmd = 5,
     data_tables = 6,
     stop = 7,
     custom_data = 8,

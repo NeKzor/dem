@@ -24,42 +24,42 @@
     {
       "name": "Packet",
       "path": "docs/messages/packet.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "SyncTick",
       "path": "docs/messages/synctick.mdx",
-      "generate": false
+      "generate": true
     },
     {
-      "name": "Consolecmd",
+      "name": "ConsoleCmd",
       "path": "docs/messages/consolecmd.mdx",
-      "generate": false
+      "generate": true
     },
     {
-      "name": "Usercmd",
+      "name": "UserCmd",
       "path": "docs/messages/usercmd.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "DataTables",
       "path": "docs/messages/datatables.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "Stop",
       "path": "docs/messages/stop.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "CustomData",
       "path": "docs/messages/customdata.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "StringTables",
       "path": "docs/messages/stringtables.mdx",
-      "generate": false
+      "generate": true
     },
     {
       "name": "CmdInfo",

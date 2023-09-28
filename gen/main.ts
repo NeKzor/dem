@@ -175,7 +175,7 @@ for (const { name, path, generate } of mappings) {
   const end = content.indexOf(`<!-- @dem-gen-end:${name} -->`);
 
   if (start === -1 || end === -1) {
-    console.warn(`Missing begin-end markers in ${path} : ${start} - ${end}`);
+    console.warn(`Missing begin-end markers in ${path} : ${name} : ${start} - ${end}`);
     continue;
   }
 
