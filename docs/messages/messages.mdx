@@ -82,7 +82,7 @@ class Message {
 <TabItem value="ts" label="TS">
 
 ```ts
-class Message {
+export class Message {
   public type?: MessageType;
   public tick?: number;
   public slot?: number;
@@ -134,17 +134,162 @@ const Message = struct {
 ## Types
 
 <!-- @dem-gen-begin:MessageType -->
-| Type                                    | Value | Description       |
-| --------------------------------------- | ----- | ----------------- |
-| [SignOn](./messages/packet)             | 1     | -                 |
-| [Packet](./messages/packet)             | 2     | -                 |
-| [SyncTick](./messages/synctick)         | 3     | -                 |
-| [Consolecmd](./messages/consolecmd)     | 4     | -                 |
-| [Usercmd](./messages/usercmd)           | 5     | -                 |
-| [DataTables](./messages/datatables)     | 6     | -                 |
-| [Stop](./messages/stop)                 | 7     | -                 |
-| [CustomData](./messages/customdata)     | 8     | -                 |
-| [StringTables](./messages/stringtables) | 9     | 8 for old engine. |
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
+| Type | Value | Description |
+| --- | --- | --- |
+| SignOn | 1 | - |
+| Packet | 2 | - |
+| SyncTick | 3 | - |
+| Consolecmd | 4 | - |
+| Usercmd | 5 | - |
+| DataTables | 6 | - |
+| Stop | 7 | - |
+| CustomData | 8 | - |
+| StringTables | 9 | 8 for old engine. |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+enum message_type {
+    MT_SIGN_ON = 1,
+    MT_PACKET = 2,
+    MT_SYNC_TICK = 3,
+    MT_CONSOLECMD = 4,
+    MT_USERCMD = 5,
+    MT_DATA_TABLES = 6,
+    MT_STOP = 7,
+    MT_CUSTOM_DATA = 8,
+    MT_STRING_TABLES = 9,
+};
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+enum class message_type {
+    SIGN_ON = 1,
+    PACKET = 2,
+    SYNC_TICK = 3,
+    CONSOLECMD = 4,
+    USERCMD = 5,
+    DATA_TABLES = 6,
+    STOP = 7,
+    CUSTOM_DATA = 8,
+    STRING_TABLES = 9,
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+enum MessageType : byte {
+    SignOn = 1,
+    Packet = 2,
+    SyncTick = 3,
+    Consolecmd = 4,
+    Usercmd = 5,
+    DataTables = 6,
+    Stop = 7,
+    CustomData = 8,
+    StringTables = 9,
+};
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+const MessageType = {
+  SignOn = 1,
+  Packet = 2,
+  SyncTick = 3,
+  Consolecmd = 4,
+  Usercmd = 5,
+  DataTables = 6,
+  Stop = 7,
+  CustomData = 8,
+  StringTables = 9,
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export enum MessageType {
+  SignOn = 1,
+  Packet = 2,
+  SyncTick = 3,
+  Consolecmd = 4,
+  Usercmd = 5,
+  DataTables = 6,
+  Stop = 7,
+  CustomData = 8,
+  StringTables = 9,
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type MessageType byte
+
+const (
+	SignOn       MessageType = 1,
+	Packet                   = 2,
+	SyncTick                 = 3,
+	Consolecmd               = 4,
+	Usercmd                  = 5,
+	DataTables               = 6,
+	Stop                     = 7,
+	CustomData               = 8,
+	StringTables             = 9,
+)
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub enum MessageType {
+    SignOn = 1,
+    Packet = 2,
+    SyncTick = 3,
+    Consolecmd = 4,
+    Usercmd = 5,
+    DataTables = 6,
+    Stop = 7,
+    CustomData = 8,
+    StringTables = 9,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const MessageType = enum {
+    sign_on = 1,
+    packet = 2,
+    sync_tick = 3,
+    consolecmd = 4,
+    usercmd = 5,
+    data_tables = 6,
+    stop = 7,
+    custom_data = 8,
+    string_tables = 9,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:MessageType -->
 

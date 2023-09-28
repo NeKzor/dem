@@ -38,6 +38,10 @@ export class Csharp implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`enum ${ctx.enum.name} : byte {`);
+    ctx.enum.values.forEach((value) => {
+      out.push(`    ${value.name} = ${value.value},`);
+    });
+    out.push(`};`);
   }
 }

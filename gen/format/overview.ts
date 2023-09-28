@@ -13,7 +13,6 @@ export class Overview implements Formatter {
         notes.push(field.description);
       }
 
-      // TODO: link to non-primitive type
       out.push(
         `| ${field.name}${
           field.newEngine ? `<sup title="New Engine">NE</sup>` : ""
@@ -49,6 +48,10 @@ export class Overview implements Formatter {
     });
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`| Type | Value | Description |`);
+    out.push(`| --- | --- | --- |`);
+    ctx.enum.values.forEach((value) => {
+      out.push(`| ${value.name} | ${value.value} | ${value.description ?? '-'} |`);
+    });
   }
 }

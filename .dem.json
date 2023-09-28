@@ -98,7 +98,7 @@
   "enums": [
     {
       "name": "MessageType",
-      "values:": [
+      "values": [
         { "name": "SignOn", "ref": "/messages/signon", "value": 1 },
         { "name": "Packet", "ref": "/messages/packet", "value": 2 },
         { "name": "SyncTick", "ref": "/messages/synctick", "value": 3 },

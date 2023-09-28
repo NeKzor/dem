@@ -58,6 +58,24 @@ export class Go implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`type ${ctx.enum.name} byte`);
+    out.push("");
+    out.push(`const (`);
+    let longestName = 0;
+    const fields = ctx.enum.values.map((value) => {
+      if (value.name.length > longestName) {
+        longestName = value.name.length;
+      }
+      return [value.name, value.value] as [string, number];
+    });
+    fields.forEach(([name, value], idx) => {
+      const padding = longestName - name.length;
+      out.push(
+        `\t${name}${" ".repeat(padding)}${idx ? "" : " " + ctx.enum.name} ${
+          idx ? " ".repeat(ctx.enum.values.length + 3) : ""
+        }= ${value},`,
+      );
+    });
+    out.push(`)`);
   }
 }

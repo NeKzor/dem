@@ -36,6 +36,10 @@ export class Js implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`const ${ctx.enum.name} = {`);
+    ctx.enum.values.forEach((value) => {
+      out.push(`  ${value.name} = ${value.value},`);
+    });
+    out.push(`}`);
   }
 }

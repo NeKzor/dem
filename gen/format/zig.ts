@@ -53,6 +53,10 @@ export class Zig implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`const ${ctx.enum.name} = enum {`);
+    ctx.enum.values.forEach((value) => {
+      out.push(`    ${toSnakeCase(value.name)} = ${value.value},`);
+    });
+    out.push(`};`);
   }
 }

@@ -43,6 +43,11 @@ export class C implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`enum ${toSnakeCase(ctx.enum.name)} {`);
+    const prefix = ctx.enum.name.replaceAll(/[a-z]+/g, '');
+    ctx.enum.values.forEach((value) => {
+      out.push(`    ${prefix}_${toSnakeCase(value.name).toUpperCase()} = ${value.value},`);
+    });
+    out.push(`};`);
   }
 }

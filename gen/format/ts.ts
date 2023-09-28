@@ -11,7 +11,7 @@ import { Formatter } from "./formatter.ts";
 
 export class Ts implements Formatter {
   genStruct(ctx: FormatContext, out: string[]): void {
-    out.push(`class ${ctx.type.name} {`);
+    out.push(`export class ${ctx.type.name} {`);
     ctx.type.fields.forEach((field) => {
       out.push(`  public ${this.genField({ ...ctx, field })};`);
     });
@@ -33,6 +33,10 @@ export class Ts implements Formatter {
     }
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
-    throw new Error("Method not implemented.");
+    out.push(`export enum ${ctx.enum.name} {`);
+    ctx.enum.values.forEach((value) => {
+      out.push(`  ${value.name} = ${value.value},`);
+    });
+    out.push(`}`);
   }
 }

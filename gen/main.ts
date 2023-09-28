@@ -33,6 +33,8 @@ const { mappings } = JSON.parse(
   await Deno.readTextFile(".dem.map.json"),
 ) as DemMapping;
 
+const importCache = new Set<string>();
+
 const genType = async (
   path: string,
   content: string[],
@@ -46,8 +48,13 @@ const genType = async (
   }
 
   const out: string[] = [];
-  out.push(`import Tabs from '@theme/Tabs';`);
-  out.push(`import TabItem from '@theme/TabItem';`);
+
+  if (!importCache.has(path)) {
+    importCache.add(path);
+    out.push(`import Tabs from '@theme/Tabs';`);
+    out.push(`import TabItem from '@theme/TabItem';`);
+  }
+
   out.push("");
   out.push(`<Tabs groupId="lang">`);
 
@@ -80,6 +87,7 @@ const genType = async (
     out.push("");
     out.push(`</TabItem>`);
   });
+
   out.push(`</Tabs>`);
   out.push("");
 
@@ -111,19 +119,29 @@ const genEnum = async (
   };
 
   const out: string[] = [];
-  out.push(`import Tabs from '@theme/Tabs';`);
-  out.push(`import TabItem from '@theme/TabItem';`);
-  out.push(`<Tabs>`);
+
+  if (!importCache.has(path)) {
+    importCache.add(path);
+    out.push(`import Tabs from '@theme/Tabs';`);
+    out.push(`import TabItem from '@theme/TabItem';`);
+  }
+
+  out.push("");
+  out.push(`<Tabs groupId="lang">`);
+
   formatters.forEach(([language, label, value]) => {
+    const isCode = value !== "overview";
     out.push(`<TabItem value="${value}" label="${label}">`);
     out.push("");
-    out.push(`\`\`\`${value}`);
+    isCode && out.push(`\`\`\`${value}`);
     language.genEnum(ctx, out);
-    out.push(`\`\`\``);
+    isCode && out.push(`\`\`\``);
     out.push("");
     out.push(`</TabItem>`);
   });
+
   out.push(`</Tabs>`);
+  out.push("");
 
   const newContent = [
     ...content.slice(0, start + 1),
