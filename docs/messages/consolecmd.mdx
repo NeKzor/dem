@@ -1,14 +1,107 @@
 # ConsoleCmd
 
-This message contains a console command¹ which was executed by the player during a session via a key binding or via the
+This message contains a console command which was executed by the player during the session via a key binding or via the
 developer console.
 
 <!-- @dem-gen-begin:ConsoleCmd -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | Size | int | 4 | 32 | - |
-| Data | string | Size | Size*8 | - |
+| Data | string | Size | Size\*8 | - |
 
-¹ Commands cannot appear in demo files if they are flagged as `FCVAR_DONTRECORD`.
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    int size;
+    char* data;
+} console_cmd_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct console_cmd_t {
+    int32_t size;
+    std::string data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class ConsoleCmd {
+    public int Size { get; set; }
+    public string Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class ConsoleCmd {
+  /** @type {number} */
+  size;
+  /** @type {string} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class ConsoleCmd {
+  public size?: number;
+  public data?: string;
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type ConsoleCmd struct {
+	Size int32
+	Data string
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct ConsoleCmd {
+    pub size: i32,
+    pub data: String,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const ConsoleCmd = struct {
+    size: i32,
+    data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:ConsoleCmd -->
+
+:::note
+Command flagged as `FCVAR_DONTRECORD` do not appear in demo files.
+:::

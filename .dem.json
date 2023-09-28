@@ -93,6 +93,228 @@
           "type": "MessageData"
         }
       ]
+    },
+    {
+      "name": "Packet",
+      "fields": [
+        {
+          "name": "PacketInfo",
+          "bits": 0,
+          "byteSize": "76*MSSC",
+          "type": "byte[]",
+          "values": [
+            {
+              "type": "CmdInfo[]"
+            }
+          ]
+        },
+        {
+          "name": "InSequence",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "OutSequence",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "byte[]",
+          "values": [
+            {
+              "type": "NetSvcMessage[]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SyncTick",
+      "fields": []
+    },
+    {
+      "name": "ConsoleCmd",
+      "fields": [
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "UserCmd",
+      "fields": [
+        {
+          "name": "Cmd",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "byte[]",
+          "values": [
+            {
+              "type": "UserCmdInfo[]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DataTables",
+      "fields": [
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "byte[]",
+          "values": [
+            {
+              "type": "SendTable[]"
+            },
+            {
+              "type": "ServerClassInfo[]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stop",
+      "fields": [
+        {
+          "name": "RemainingData",
+          "bits": 0,
+          "type": "byte[]",
+          "value": "Optional"
+        }
+      ]
+    },
+    {
+      "name": "CustomData",
+      "fields": [
+        {
+          "name": "Unknown",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "byte[]"
+        }
+      ]
+    },
+    {
+      "name": "StringTables",
+      "fields": [
+        {
+          "name": "Size",
+          "bits": 32,
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "bits": 0,
+          "byteSize": "Size",
+          "type": "byte[]",
+          "values": [
+            {
+              "type": "StringTable[]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StringTable",
+      "fields": [
+        {
+          "name": "NumOfTables",
+          "bits": 8,
+          "type": "int"
+        },
+        {
+          "name": "TableName",
+          "bits": 0,
+          "type": "int"
+        },
+        {
+          "name": "NumOfEntries",
+          "bits": 16,
+          "type": "int"
+        },
+        {
+          "name": "EntryName",
+          "bits": 0,
+          "type": "int"
+        },
+        {
+          "name": "EntrySize",
+          "bits": 16,
+          "type": "int"
+        },
+        {
+          "name": "EntryData",
+          "bits": 0,
+          "byteSize": "EntrySize",
+          "type": "byte[]"
+        },
+        {
+          "name": "NumOfClientEntries",
+          "bits": 16,
+          "type": "int"
+        },
+        {
+          "name": "ClientEntryName",
+          "bits": 0,
+          "type": "string"
+        },
+        {
+          "name": "ClientEntrySize",
+          "bits": 16,
+          "type": "int"
+        },
+        {
+          "name": "ClientEntryData",
+          "bits": 0,
+          "byteSize": "ClientEntrySize",
+          "type": "byte[]"
+        }
+      ]
     }
   ],
   "enums": [

@@ -4,8 +4,90 @@ This message indicates the end of the demo file. The remaining bytes that come a
 include the message tick as seen in older engine versions. These bytes can also appear for alignment reasons.
 
 <!-- @dem-gen-begin:Stop -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | RemainingData | byte[] | - | - | Optional |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    char* remaining_data;
+} stop_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct stop_t {
+    std::vector<std::byte> remaining_data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class Stop {
+    public List<byte> RemainingData { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class Stop {
+  /** @type {number[]} */
+  remainingData;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class Stop {
+  public remainingData?: number[];
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type Stop struct {
+	RemainingData []byte
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct Stop {
+    pub remaining_data: Vec<u8>,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const Stop = struct {
+    remaining_data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:Stop -->

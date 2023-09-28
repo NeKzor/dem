@@ -30,12 +30,12 @@ support split-screen mode.
 <TabItem value="c" label="C">
 
 ```c
-struct message_t {
+typedef struct {
     message_type type;
     int tick;
     char slot;
     message_data_t* data;
-};
+} message_t;
 ```
 
 </TabItem>
@@ -45,7 +45,7 @@ struct message_t {
 struct message_t {
     message_type type;
     int32_t tick;
-    int8_t slot;
+    std::byte slot;
     message_data_t* data;
 };
 ```

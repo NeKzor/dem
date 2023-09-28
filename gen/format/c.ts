@@ -11,11 +11,11 @@ import { Formatter } from "./formatter.ts";
 
 export class C implements Formatter {
   genStruct(ctx: FormatContext, out: string[]): void {
-    out.push(`struct ${toSnakeCase(ctx.type.name)}_t {`);
+    out.push(`typedef struct {`);
     ctx.type.fields.forEach((field) => {
       out.push(`    ${this.genField({ ...ctx, field })};`);
     });
-    out.push(`};`);
+    out.push(`} ${toSnakeCase(ctx.type.name)}_t;`);
   }
   genField(ctx: FormatFieldContext): string {
     switch (ctx.field.type) {
@@ -28,12 +28,20 @@ export class C implements Formatter {
       case "float":
         return `float ${toSnakeCase(ctx.field.name)}`;
       case "string":
-        return `char ${toSnakeCase(ctx.field.name)}[${ctx.field.bits / 8}]`;
+        return ctx.field.bits
+          ? `char ${toSnakeCase(ctx.field.name)}[${ctx.field.bits / 8}]`
+          : `char* ${toSnakeCase(ctx.field.name)}`;
       default: {
         if (ctx.field.type.endsWith("[]")) {
-          return `${toSnakeCase(ctx.field.type.slice(0, -2))}_t** ${
-            toSnakeCase(ctx.field.name)
-          }`;
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "byte":
+              return `char* ${toSnakeCase(ctx.field.name)}`;
+            case "string":
+              return `char** ${toSnakeCase(ctx.field.name)}`;
+            default:
+              return `${toSnakeCase(type)}_t** ${toSnakeCase(ctx.field.name)}`;
+          }
         } else {
           return `${toSnakeCase(ctx.field.type)}${
             ctx.field.enum ? "" : "_t*"
@@ -41,6 +49,9 @@ export class C implements Formatter {
         }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`typedef struct {} ${toSnakeCase(ctx.type.name)}_t;`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`enum ${toSnakeCase(ctx.enum.name)} {`);

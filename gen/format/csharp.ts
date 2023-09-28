@@ -37,6 +37,9 @@ export class Csharp implements Formatter {
       }
     }
   }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`class ${ctx.type.name} {}`);
+  }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`enum ${ctx.enum.name} : byte {`);
     ctx.enum.values.forEach((value) => {

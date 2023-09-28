@@ -6,8 +6,10 @@ export type DemFieldType = "bool" | "int" | "float" | "string";
 export interface DemField {
   name: string;
   bits: number;
+  byteSize?: string;
   type: DemFieldType | string;
   value?: string;
+  values: { type: DemFieldType | string }[];
   description?: string;
   newEngine?: boolean;
   enum?: boolean;

@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="c" label="C">
 
 ```c
-struct demo_t {
+typedef struct {
     char demo_file_stamp[8];
     int demo_protocol;
     int network_protocol;
@@ -46,7 +46,7 @@ struct demo_t {
     int playback_frames;
     int sign_on_length;
     message_t** demo_messages;
-};
+} demo_t;
 ```
 
 </TabItem>
@@ -186,13 +186,13 @@ pub struct Demo {
 
 ```zig
 const Demo = struct {
-    demo_file_stamp: []const u8,
+    demo_file_stamp: []u8,
     demo_protocol: i32,
     network_protocol: i32,
-    server_name: []const u8,
-    client_name: []const u8,
-    map_name: []const u8,
-    game_directory: []const u8,
+    server_name: []u8,
+    client_name: []u8,
+    map_name: []u8,
+    game_directory: []u8,
     playback_time: f32,
     playback_ticks: i32,
     playback_frames: i32,

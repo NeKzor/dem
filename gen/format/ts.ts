@@ -28,9 +28,28 @@ export class Ts implements Formatter {
       case "string":
         return `${toCamelCase(ctx.field.name)}?: string`;
       default: {
-        return `${toCamelCase(ctx.field.name)}?: ${ctx.field.type}`;
+        if (ctx.field.type.endsWith("[]")) {
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "bool":
+              return `${toCamelCase(ctx.field.name)}?: boolean[]`;
+            case "byte":
+            case "int":
+            case "float":
+              return `${toCamelCase(ctx.field.name)}?: number[]`;
+            case "string":
+              return `${toCamelCase(ctx.field.name)}?: string[]`;
+            default:
+              return `${toCamelCase(ctx.field.name)}?: ${type}[]`;
+          }
+        } else {
+          return `${toCamelCase(ctx.field.name)}?: ${ctx.field.type}`;
+        }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`class ${ctx.type.name} {}`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`export enum ${ctx.enum.name} {`);

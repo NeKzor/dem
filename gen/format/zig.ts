@@ -38,12 +38,24 @@ export class Zig implements Formatter {
       case "float":
         return `${toSnakeCase(ctx.field.name)}: f32`;
       case "string":
-        return `${toSnakeCase(ctx.field.name)}: []const u8`;
+        return `${toSnakeCase(ctx.field.name)}: []u8`;
       default: {
         if (ctx.field.type.endsWith("[]")) {
-          return `${toSnakeCase(ctx.field.name)}: []${
-            ctx.field.type.slice(0, -2)
-          }`;
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "bool":
+              return `${toSnakeCase(ctx.field.name)}: []bool`;
+            case "byte":
+              return `${toSnakeCase(ctx.field.name)}: []u8`;
+            case "int":
+              return `${toSnakeCase(ctx.field.name)}: []i32`;
+            case "float":
+              return `${toSnakeCase(ctx.field.name)}: []f32`;
+            case "string":
+              return `${toSnakeCase(ctx.field.name)}: [][]u8`;
+            default:
+              return `${toSnakeCase(ctx.field.name)}: []${ctx.field.type.slice(0, -2)}`;
+          }
         } else {
           return `${toSnakeCase(ctx.field.name)}: ${
             toSnakeCase(ctx.field.type)
@@ -51,6 +63,9 @@ export class Zig implements Formatter {
         }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`const ${ctx.type.name} = struct {};`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`const ${ctx.enum.name} = enum {`);

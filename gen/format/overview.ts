@@ -24,9 +24,19 @@ export class Overview implements Formatter {
           field.enum || field.type[0] === field.type[0].toUpperCase()
             ? ctx.getLink(field)
             : field.type
-        } | ${field.bits ? field.bits / 8 : "-"} | ${
-          field.bits ? field.bits : "-"
-        } | ${field.value ?? "-"} |`,
+        } | ${
+          field.bits ? field.bits / 8 : field.byteSize ? field.byteSize : "-"
+        } | ${
+          field.bits
+            ? field.bits
+            : field.byteSize
+            ? field.byteSize + "\\*8"
+            : "-"
+        } | ${
+          field.value ?? field.values?.map((value) =>
+            ctx.getLink(value.type)
+          ).join("<br/>") ?? "-"
+        } |`,
       );
     });
 

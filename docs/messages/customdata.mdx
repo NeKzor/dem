@@ -4,10 +4,110 @@ This message is used to embed data in a generic way without introducing breaking
 up to the engine whether to use or process this kind of message.
 
 <!-- @dem-gen-begin:CustomData -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | Unknown | int | 4 | 32 | - |
 | Size | int | 4 | 32 | - |
-| Data | byte[] | Size | Size*8 | - |
+| Data | byte[] | Size | Size\*8 | - |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    int unknown;
+    int size;
+    char* data;
+} custom_data_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct custom_data_t {
+    int32_t unknown;
+    int32_t size;
+    std::vector<std::byte> data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class CustomData {
+    public int Unknown { get; set; }
+    public int Size { get; set; }
+    public List<byte> Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class CustomData {
+  /** @type {number} */
+  unknown;
+  /** @type {number} */
+  size;
+  /** @type {number[]} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class CustomData {
+  public unknown?: number;
+  public size?: number;
+  public data?: number[];
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type CustomData struct {
+	Unknown int32
+	Size    int32
+	Data    []byte
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct CustomData {
+    pub unknown: i32,
+    pub size: i32,
+    pub data: Vec<u8>,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const CustomData = struct {
+    unknown: i32,
+    size: i32,
+    data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:CustomData -->

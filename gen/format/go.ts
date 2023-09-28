@@ -57,6 +57,9 @@ export class Go implements Formatter {
       }
     }
   }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`type ${ctx.type.name} struct{}`);
+  }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`type ${ctx.enum.name} byte`);
     out.push("");

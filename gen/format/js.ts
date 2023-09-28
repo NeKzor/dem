@@ -25,15 +25,33 @@ export class Js implements Formatter {
         return `/** @type {boolean} */`;
       case "byte":
       case "int":
-        return `/** @type {number} */`;
       case "float":
         return `/** @type {number} */`;
       case "string":
         return `/** @type {string} */`;
       default: {
-        return `/** @type {${ctx.field.type}} */`;
+        if (ctx.field.type.endsWith("[]")) {
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "bool":
+              return `/** @type {boolean[]} */`;
+            case "byte":
+            case "int":
+            case "float":
+              return `/** @type {number[]} */`;
+            case "string":
+              return `/** @type {string[]} */`;
+            default:
+              return `/** @type {${type}[]} */`;
+          }
+        } else {
+          return `/** @type {${ctx.field.type}} */`;
+        }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`class ${ctx.type.name} {}`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`const ${ctx.enum.name} = {`);

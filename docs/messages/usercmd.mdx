@@ -3,10 +3,110 @@
 This message contains the player's polled inputs which was used to process their movement.
 
 <!-- @dem-gen-begin:UserCmd -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | Cmd | int | 4 | 32 | - |
 | Size | int | 4 | 32 | - |
-| Data | byte[] | Size | Size*8 | [UserCmdInfo](../classes/usercmdinfo) |
+| Data | byte[] | Size | Size\*8 | [UserCmdInfo[]](/classes/usercmdinfo.mdx) |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    int cmd;
+    int size;
+    char* data;
+} user_cmd_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct user_cmd_t {
+    int32_t cmd;
+    int32_t size;
+    std::vector<std::byte> data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class UserCmd {
+    public int Cmd { get; set; }
+    public int Size { get; set; }
+    public List<byte> Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class UserCmd {
+  /** @type {number} */
+  cmd;
+  /** @type {number} */
+  size;
+  /** @type {number[]} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class UserCmd {
+  public cmd?: number;
+  public size?: number;
+  public data?: number[];
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type UserCmd struct {
+	Cmd  int32
+	Size int32
+	Data []byte
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct UserCmd {
+    pub cmd: i32,
+    pub size: i32,
+    pub data: Vec<u8>,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const UserCmd = struct {
+    cmd: i32,
+    size: i32,
+    data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:UserCmd -->

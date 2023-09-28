@@ -22,7 +22,7 @@ export class Cpp implements Formatter {
       case "bool":
         return `bool ${toSnakeCase(ctx.field.name)}`;
       case "byte":
-        return `int8_t ${toSnakeCase(ctx.field.name)}`;
+        return `std::byte ${toSnakeCase(ctx.field.name)}`;
       case "int": {
         switch (ctx.field.bits) {
           case 8:
@@ -41,9 +41,21 @@ export class Cpp implements Formatter {
         return `std::string ${toSnakeCase(ctx.field.name)}`;
       default: {
         if (ctx.field.type.endsWith("[]")) {
-          return `std::vector<${toSnakeCase(ctx.field.type.slice(0, -2))}_t> ${
-            toSnakeCase(ctx.field.name)
-          }`;
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "byte":
+              return `std::vector<std::byte> ${toSnakeCase(ctx.field.name)}`;
+            case "string":
+              return `std::vector<std::string> ${toSnakeCase(ctx.field.name)}`;
+            case "bool":
+            case "int":
+            case "float":
+              return `std::vector<${type}> ${toSnakeCase(ctx.field.name)}`;
+            default:
+              return `std::vector<${toSnakeCase(type)}_t> ${
+                toSnakeCase(ctx.field.name)
+              }`;
+          }
         } else {
           return `${toSnakeCase(ctx.field.type)}${
             ctx.field.enum ? "" : "_t*"
@@ -51,6 +63,9 @@ export class Cpp implements Formatter {
         }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`struct ${toSnakeCase(ctx.type.name)}_t {};`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`enum class ${toSnakeCase(ctx.enum.name)} {`);

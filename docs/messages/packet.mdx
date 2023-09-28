@@ -4,13 +4,131 @@ Packets contain simulated information about a session. A SignOn message is the s
 appears once at the very beginning to indicate that the server is ready.
 
 <!-- @dem-gen-begin:Packet -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
-| PacketInfo | byte[] | 76*MSSC | 76*MSSC*8 | [CmdInfo[MSSC]](../classes/cmdinfo) |
+| PacketInfo | byte[] | 76*MSSC | 76*MSSC\*8 | [CmdInfo[]](/classes/cmdinfo.mdx) |
 | InSequence | int | 4 | 32 | - |
 | OutSequence | int | 4 | 32 | - |
 | Size | int | 4 | 32 | - |
-| Data | byte[] | Size | Size*8 | [Net/Svc-Message[]](../classes/netsvc) |
+| Data | byte[] | Size | Size\*8 | [NetSvcMessage[]](/classes/netsvc.mdx) |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    char* packet_info;
+    int in_sequence;
+    int out_sequence;
+    int size;
+    char* data;
+} packet_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct packet_t {
+    std::vector<std::byte> packet_info;
+    int32_t in_sequence;
+    int32_t out_sequence;
+    int32_t size;
+    std::vector<std::byte> data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class Packet {
+    public List<byte> PacketInfo { get; set; }
+    public int InSequence { get; set; }
+    public int OutSequence { get; set; }
+    public int Size { get; set; }
+    public List<byte> Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class Packet {
+  /** @type {number[]} */
+  packetInfo;
+  /** @type {number} */
+  inSequence;
+  /** @type {number} */
+  outSequence;
+  /** @type {number} */
+  size;
+  /** @type {number[]} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class Packet {
+  public packetInfo?: number[];
+  public inSequence?: number;
+  public outSequence?: number;
+  public size?: number;
+  public data?: number[];
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type Packet struct {
+	PacketInfo  []byte
+	InSequence  int32
+	OutSequence int32
+	Size        int32
+	Data        []byte
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct Packet {
+    pub packet_info: Vec<u8>,
+    pub in_sequence: i32,
+    pub out_sequence: i32,
+    pub size: i32,
+    pub data: Vec<u8>,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const Packet = struct {
+    packet_info: []u8,
+    in_sequence: i32,
+    out_sequence: i32,
+    size: i32,
+    data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:Packet -->
 

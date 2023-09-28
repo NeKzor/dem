@@ -3,8 +3,66 @@
 This message indicates the start of a session. It does not contain any data.
 
 <!-- @dem-gen-begin:SyncTick -->
-| Name | Type | Size in bytes | Size in bits | Value |
-| --- | --- | --- | --- | --- |
-| - | ZST | 0 | 0 | - |
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="c" label="C">
+
+```c
+typedef struct {} sync_tick_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct sync_tick_t {};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class SyncTick {}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class SyncTick {}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+class SyncTick {}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type SyncTick struct{}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct SyncTick;
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const SyncTick = struct {};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:SyncTick -->

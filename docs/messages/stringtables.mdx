@@ -4,10 +4,101 @@ This message only appears once at the beginning of a demo. It contains network d
 simulation.
 
 <!-- @dem-gen-begin:StringTables -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="lang">
+<TabItem value="overview" label="Overview">
+
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | Size | int | 4 | 32 | - |
-| Data | byte[] | Size | Size*8 | [StringTable[]](../classes/stringtable) |
+| Data | byte[] | Size | Size\*8 | [StringTable[]](/classes/stringtable.mdx) |
+
+</TabItem>
+<TabItem value="c" label="C">
+
+```c
+typedef struct {
+    int size;
+    char* data;
+} string_tables_t;
+```
+
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+struct string_tables_t {
+    int32_t size;
+    std::vector<std::byte> data;
+};
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+class StringTables {
+    public int Size { get; set; }
+    public List<byte> Data { get; set; }
+}
+```
+
+</TabItem>
+<TabItem value="js" label="JS">
+
+```js
+class StringTables {
+  /** @type {number} */
+  size;
+  /** @type {number[]} */
+  data;
+}
+```
+
+</TabItem>
+<TabItem value="ts" label="TS">
+
+```ts
+export class StringTables {
+  public size?: number;
+  public data?: number[];
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+type StringTables struct {
+	Size int32
+	Data []byte
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```rust
+pub struct StringTables {
+    pub size: i32,
+    pub data: Vec<u8>,
+}
+```
+
+</TabItem>
+<TabItem value="zig" label="Zig">
+
+```zig
+const StringTables = struct {
+    size: i32,
+    data: []u8,
+};
+```
+
+</TabItem>
+</Tabs>
 
 <!-- @dem-gen-end:StringTables -->
 

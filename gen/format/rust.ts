@@ -41,9 +41,21 @@ export class Rust implements Formatter {
         return `${toSnakeCase(ctx.field.name)}: String`;
       default: {
         if (ctx.field.type.endsWith("[]")) {
-          return `${toSnakeCase(ctx.field.name)}: Vec<${
-            ctx.field.type.slice(0, -2)
-          }>`;
+          const type = ctx.field.type.slice(0, -2);
+          switch (type) {
+            case "bool":
+              return `${toSnakeCase(ctx.field.name)}: Vec<bool>`;
+            case "byte":
+              return `${toSnakeCase(ctx.field.name)}: Vec<u8>`;
+            case "int":
+              return `${toSnakeCase(ctx.field.name)}: Vec<i32>`;
+            case "float":
+              return `${toSnakeCase(ctx.field.name)}: Vec<f32>`;
+            case "string":
+              return `${toSnakeCase(ctx.field.name)}: Vec<String>`;
+            default:
+              return `${toSnakeCase(ctx.field.name)}: Vec<${ctx.field.type.slice(0, -2)}>`;
+          }
         } else {
           return `${
             ctx.field.name === "Type" ? "r#type" : toSnakeCase(ctx.field.name)
@@ -51,6 +63,9 @@ export class Rust implements Formatter {
         }
       }
     }
+  }
+  genZST(ctx: FormatContext, out: string[]): void {
+    out.push(`pub struct ${ctx.type.name};`);
   }
   genEnum(ctx: FormatEnumContext, out: string[]): void {
     out.push(`pub enum ${ctx.enum.name} {`);

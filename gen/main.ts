@@ -35,18 +35,19 @@ const { mappings } = JSON.parse(
 
 const importCache = new Set<string>();
 
-const getLink = (field: DemField) => {
-  const typeName = field.type.endsWith("[]")
-    ? field.type.slice(0, -2)
-    : field.type;
-  const mapping = mappings.find(({ name }) => name === typeName);
+const getLink = (field: DemField | string) => {
+  const fieldType = typeof field === 'string' ? field : field.type;
+  const innerType = fieldType.endsWith("[]")
+    ? fieldType.slice(0, -2)
+    : fieldType;
+  const mapping = mappings.find(({ name }) => name === innerType);
   if (!mapping) {
-    return field.type;
+    return fieldType;
   }
   if (mapping.ref) {
-    return `[${field.type}](${mapping.ref})`;
+    return `[${fieldType}](${mapping.ref})`;
   }
-  return `[${field.type}](${mapping.path.slice(4)})`;
+  return `[${fieldType}](${mapping.path.slice(4)})`;
 };
 
 const getEnumLink = (value: DemEnumValue) => {
@@ -87,10 +88,18 @@ const genType = async (
 
   formatters.forEach(([language, label, value]) => {
     const isCode = value !== "overview";
+    if (!demType.fields.length && !language.genZST) {
+      return;
+    }
+
     out.push(`<TabItem value="${value}" label="${label}">`);
     out.push("");
     isCode && out.push(`\`\`\`${value}`);
-    language.genStruct(ctx, out);
+    if (demType.fields.length) {
+      language.genStruct(ctx, out);
+    } else {
+      language.genZST!(ctx, out);
+    }
     isCode && out.push(`\`\`\``);
     out.push("");
     out.push(`</TabItem>`);
