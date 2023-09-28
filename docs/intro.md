@@ -18,6 +18,10 @@ Documentation of the reverse-engineered `.dem` file format used in SourceEngine 
 
 ## Changelog
 
+### 2023-09-28
+
+- Improved examples section for [libraries](./libraries.md) and [showcases](./showcases.md)
+
 ### 2023-09-27
 
 - Migrated docs to [Docusaurus]
@@ -36,7 +40,7 @@ Documentation of the reverse-engineered `.dem` file format used in SourceEngine 
 - Added some additional caveats
 - Added short descriptions
 - Added pseudocode examples for decoding complex data structures
-- Added license, dependencies, features and applications to [examples](./examples)
+- Added license, dependencies, features and applications to examples
 - Added changelog
 - Added docs for [Net/Svc messages](./classes/netsvc)
 
