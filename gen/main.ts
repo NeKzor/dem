@@ -179,9 +179,8 @@ for (const { name, path, generate } of mappings) {
 
   const content = (await Deno.readTextFile(path)).split("\n");
 
-  // TODO: Switch to mdx v2 comments when Docusaurus v3 comes out
-  const start = content.indexOf(`<!-- @dem-gen-begin:${name} -->`);
-  const end = content.indexOf(`<!-- @dem-gen-end:${name} -->`);
+  const start = content.indexOf(`{/* @dem-gen-begin:${name} */}`);
+  const end = content.indexOf(`{/* @dem-gen-end:${name} */}`);
 
   if (start === -1 || end === -1) {
     console.warn(

@@ -8,14 +8,14 @@ Part of [Net/Svc](../netsvc) message.
 
 The data of this message is a list of descriptors which contain an event id and a set of keys. This will later be used to decode [SvcGameEvent](./svcgameevent) messages.
 
-<!-- @dem-gen-begin:SvcGameEventList -->
+{/* @dem-gen-begin:SvcGameEventList */}
 | Name | Type | Size in bytes | Size in bits | Value |
 | --- | --- | --- | --- | --- |
 | Events | int | 1.125 | 9 | - |
 | Length | int | 2.5 | 20 | - |
 | Data | byte[] | Length[] | - | GameEventDescriptor[] |
 
-<!-- @dem-gen-end:SvcGameEventList -->
+{/* @dem-gen-end:SvcGameEventList */}
 
 ## Pseudocode Example
 
