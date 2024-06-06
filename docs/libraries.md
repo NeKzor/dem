@@ -17,7 +17,7 @@ A list of open-source libraries, made possible with some help of this documentat
 
 ### Go
 
-- [DemoParser](https://github.com/pektezol/DemoParser)
+- [sdp.go](https://github.com/pektezol/sdp.go)
 
 ### Java
 
